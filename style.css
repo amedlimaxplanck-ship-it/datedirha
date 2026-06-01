@@ -407,22 +407,72 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 400px) {
-    .card-content {
-        padding: 25px 15px;
+@media (max-width: 480px) {
+    body {
+        min-height: 100dvh;
     }
-    
+
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        border-radius: 22px;
+    }
+
+    .card-content {
+        padding: 24px 16px;
+    }
+
+    .image-wrapper {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 16px;
+    }
+
+    .title {
+        font-size: 1.45rem;
+        margin-bottom: 12px;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+
     .btn-group {
-        flex-direction: column;
         gap: 12px;
-        min-height: 120px;
+        min-height: 50px;
     }
 
     .btn {
-        width: 100%;
+        font-size: 0.9rem;
+        padding: 12px 20px;
     }
 
+    /* Keep the 2-column layout on mobile, but make it fit beautifully */
     .options-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .option-content {
+        min-height: 80px;
+        padding: 10px 8px;
+        gap: 6px;
+        border-radius: 12px;
+    }
+
+    .option-content svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .option-text {
+        font-size: 0.72rem;
+    }
+    
+    .date-form {
+        gap: 15px;
     }
 }

@@ -11,7 +11,7 @@ const ctx = canvas.getContext('2d');
 
 // State Variables
 let yesScale = 1.0;
-const maxYesScale = 2.5;
+const maxYesScale = window.innerWidth < 480 ? 1.6 : 2.5;
 let noClickCount = 0;
 
 // Escape messages for the No button (Emoji-free)
