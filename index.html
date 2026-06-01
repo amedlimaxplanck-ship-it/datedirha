@@ -76,40 +76,65 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="time-input" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Buluşma Saati
+                        </label>
+                        <input type="time" id="time-input" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label">
                             <svg class="label-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                             Ne Yapmak İstersin?
                         </label>
                         <div class="options-grid">
                             <label class="option-card">
-                                <input type="radio" name="activity" value="Kahve ve Sohbet" checked>
+                                <input type="radio" name="activity" value="Kahve ve Dedikodu" checked>
                                 <span class="option-content">
                                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-                                    <span class="option-text">Kahve & Sohbet</span>
+                                    <span class="option-text">Kahve & Dedikodu</span>
+                                    <span class="option-sub">"Saatlerce seni dinlerim"</span>
                                 </span>
                             </label>
                             <label class="option-card">
-                                <input type="radio" name="activity" value="Şık Bir Akşam Yemeği">
+                                <input type="radio" name="activity" value="Kredi Çekmelik Şık Bir Yemek">
                                 <span class="option-content">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><circle cx="12" cy="12" r="10"/></svg>
-                                    <!-- A custom food plate icon layout -->
                                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M18 10l-2-4M18 10l2-4M6 20V4M6 4l2 3M6 4L4 7M12 22a8 8 0 0 0 8-8h-16a8 8 0 0 0 8 8z"/></svg>
-                                    <span class="option-text">Akşam Yemeği</span>
+                                    <span class="option-text">Şık Bir Yemek</span>
+                                    <span class="option-sub">"Limitler senin için feda"</span>
                                 </span>
                             </label>
                             <label class="option-card">
-                                <input type="radio" name="activity" value="Sushi Keyfi">
+                                <input type="radio" name="activity" value="Ev Yapımı Makarna">
                                 <span class="option-content">
-                                    <!-- Chopsticks / Sushi bowl concept -->
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M4 12v6a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-6M12 3v9M8 6h8"/></svg>
+                                    <span class="option-text">Ev Yapımı Makarna</span>
+                                    <span class="option-sub">"Zehirlenmeyiz umarım"</span>
+                                </span>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="activity" value="Sushi ve Çubuk Savaşları">
+                                <span class="option-content">
                                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9z"/><path d="M19 13l-4-9M17 13L13 4"/></svg>
                                     <span class="option-text">Sushi Keyfi</span>
+                                    <span class="option-sub">"Yiyemesek de eğleniriz"</span>
                                 </span>
                             </label>
                             <label class="option-card">
-                                <input type="radio" name="activity" value="Sinema ve Mısır">
+                                <input type="radio" name="activity" value="Sahilde Boş Boş Gezip Çekirdek Çitlemek">
                                 <span class="option-content">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
-                                    <span class="option-text">Sinema</span>
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c3-2 3 2 6 0s3-2 6 0 3 2 6 0 3-2 6 0M2 18c3-2 3 2 6 0s3-2 6 0 3 2 6 0 3-2 6 0"/></svg>
+                                    <span class="option-text">Sahilde Yürüyüş</span>
+                                    <span class="option-sub">"Üşüyüp sarılmaca"</span>
+                                </span>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="activity" value="Film Gecesi ve Uykulama">
+                                <span class="option-content">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M17 2l-5 5-5-5"/></svg>
+                                    <span class="option-text">Film & Uykulama</span>
+                                    <span class="option-sub">"15. dakikada uyuruz"</span>
                                 </span>
                             </label>
                         </div>

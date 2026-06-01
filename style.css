@@ -363,9 +363,18 @@ body {
 }
 
 .option-text {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 700;
     color: var(--text-dark);
+}
+
+.option-sub {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 2px;
+    line-height: 1.2;
 }
 
 /* Selected state for radio cards */
@@ -470,6 +479,10 @@ body {
 
     .option-text {
         font-size: 0.72rem;
+    }
+
+    .option-sub {
+        font-size: 0.58rem;
     }
     
     .date-form {

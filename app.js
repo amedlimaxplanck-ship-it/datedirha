@@ -4,6 +4,7 @@ const schedulerCard = document.getElementById('scheduler-card');
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
 const dateInput = document.getElementById('date-input');
+const timeInput = document.getElementById('time-input');
 const dateForm = document.getElementById('date-form');
 const particlesContainer = document.getElementById('particles-container');
 const canvas = document.getElementById('confetti-canvas');
@@ -47,6 +48,7 @@ if (dd < 10) dd = '0' + dd;
 if (mm < 10) mm = '0' + mm;
 dateInput.min = `${yyyy}-${mm}-${dd}`;
 dateInput.value = `${yyyy}-${mm}-${dd}`;
+timeInput.value = "19:00"; // Default time (7 PM)
 
 // Floating Background Particles System
 const particleTypes = [
@@ -300,6 +302,7 @@ dateForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const chosenDate = dateInput.value;
+    const chosenTime = timeInput.value;
     const selectedActivityElement = document.querySelector('input[name="activity"]:checked');
     const chosenActivity = selectedActivityElement ? selectedActivityElement.value : "Buluşma";
     
@@ -313,7 +316,7 @@ dateForm.addEventListener('submit', (e) => {
     }
 
     // Build the template message without emojis
-    const message = `Harika haber! Date teklifini kabul ettim. Buluşma planımız şu şekilde: \n\nTarih: ${formattedDate} \nPlan: ${chosenActivity} \n\nSözleştiğimiz gibi orada olacağım!`;
+    const message = `Harika haber! Date teklifini kabul ettim. Buluşma planımız şu şekilde: \n\nTarih: ${formattedDate} \nSaat: ${chosenTime} \nPlan: ${chosenActivity} \n\nSözleştiğimiz gibi orada olacağım!`;
     const encodedMessage = encodeURIComponent(message);
     
     // Open WhatsApp URL (without phone number to open contact chooser)
