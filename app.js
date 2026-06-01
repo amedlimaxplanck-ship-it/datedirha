@@ -1,6 +1,7 @@
 // DOM Elements
 const proposalCard = document.getElementById('proposal-card');
 const schedulerCard = document.getElementById('scheduler-card');
+const successCard = document.getElementById('success-card');
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
 const dateInput = document.getElementById('date-input');
@@ -297,8 +298,8 @@ function animateConfetti() {
 }
 
 
-// Form Submission & WhatsApp Redirect
-dateForm.addEventListener('submit', (e) => {
+// Form Submission & API Request to Vercel Serverless Function
+dateForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const chosenDate = dateInput.value;
@@ -306,20 +307,48 @@ dateForm.addEventListener('submit', (e) => {
     const selectedActivityElement = document.querySelector('input[name="activity"]:checked');
     const chosenActivity = selectedActivityElement ? selectedActivityElement.value : "Buluşma";
     
-    // Format date nicely (DD.MM.YYYY)
-    let formattedDate = chosenDate;
-    if (chosenDate) {
-        const dateParts = chosenDate.split('-');
-        if (dateParts.length === 3) {
-            formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
-        }
-    }
-
-    // Build the template message without emojis
-    const message = `Harika haber! Date teklifini kabul ettim. Buluşma planımız şu şekilde: \n\nTarih: ${formattedDate} \nSaat: ${chosenTime} \nPlan: ${chosenActivity} \n\nSözleştiğimiz gibi orada olacağım!`;
-    const encodedMessage = encodeURIComponent(message);
+    const submitBtn = dateForm.querySelector('.btn-submit');
+    const originalBtnContent = submitBtn.innerHTML;
     
-    // Open WhatsApp URL (without phone number to open contact chooser)
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
+    // Disable button to prevent double tap
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-text">Gönderiliyor...</span>';
+    
+    try {
+        const response = await fetch('/api/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                date: chosenDate,
+                time: chosenTime,
+                activity: chosenActivity
+            })
+        });
+        
+        if (response.ok) {
+            // Hide scheduler card
+            schedulerCard.classList.add('hidden');
+            
+            // Wait for transition, then show success card
+            setTimeout(() => {
+                schedulerCard.style.display = 'none';
+                successCard.classList.remove('hidden');
+                
+                // Trigger an extra burst of confetti for the final success screen
+                startConfetti();
+            }, 400);
+        } else {
+            const errData = await response.json();
+            alert('Gönderim başarısız oldu. Hata: ' + (errData.error || 'Bilinmeyen Hata'));
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnContent;
+        }
+    } catch (error) {
+        console.error('Error sending date plan:', error);
+        alert('Gönderim sırasında bağlantı hatası oluştu. Lütfen tekrar dene kanka!');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+    }
 });
