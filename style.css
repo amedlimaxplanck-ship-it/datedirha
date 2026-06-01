@@ -489,3 +489,33 @@ body {
         gap: 15px;
     }
 }
+
+/* Success Screen Romantic Decor */
+.card-success {
+    border-color: rgba(255, 20, 147, 0.6) !important;
+    box-shadow: 0 20px 45px rgba(255, 20, 147, 0.35), 0 0 25px rgba(255, 105, 180, 0.35) !important;
+}
+
+.success-pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 20, 147, 0.35);
+    animation: ripple 2.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.45);
+        opacity: 0;
+    }
+}

@@ -94,7 +94,7 @@ function spawnParticle() {
 for (let i = 0; i < 6; i++) {
     spawnParticle();
 }
-setInterval(spawnParticle, 1800);
+let particleInterval = setInterval(spawnParticle, 1800);
 
 
 // Runaway "No" Button Functionality
@@ -336,8 +336,8 @@ dateForm.addEventListener('submit', async (e) => {
                 schedulerCard.style.display = 'none';
                 successCard.classList.remove('hidden');
                 
-                // Trigger an extra burst of confetti for the final success screen
-                startConfetti();
+                // Switch to romantic falling rose petals background
+                switchToSuccessBackground();
             }, 400);
         } else {
             const errData = await response.json();
@@ -353,3 +353,100 @@ dateForm.addEventListener('submit', async (e) => {
         submitBtn.innerHTML = originalBtnContent;
     }
 });
+
+// Switch background to gently falling rose petals for success screen
+function switchToSuccessBackground() {
+    // Clear existing floating particles
+    particlesContainer.innerHTML = '';
+    
+    // Set particle paths to rose petals and soft hearts
+    particleTypes.length = 0;
+    particleTypes.push(
+        // Rose petal shape 1 (curved organic leaf)
+        '<path d="M12,2C11.5,4 10,7.5 7,10C4,12.5 2,16 2,18C2,20 4,22 6,22C9,22 13,18 16,14C19,10 22,6 22,4C22,2 20,2 18,2C15,2 12.5,1.5 12,2Z"/>',
+        // Rose petal shape 2 (slender leaf/petal)
+        '<path d="M12 2C8.6 2 6 6.5 6 12c0 5.5 4 10 6 10s6-4.5 6-10c0-5.5-2.6-10-6-10z"/>',
+        // Heart path
+        '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>'
+    );
+    
+    // Transition body background to a slightly warmer, romantic tone
+    document.body.style.transition = 'background 4s ease-in-out';
+    document.body.style.background = 'radial-gradient(circle at center, #fff0f5 0%, #ffe4e1 55%, #ffd1dc 100%)';
+    
+    // Add success page animation behavior
+    const successStyles = document.createElement('style');
+    successStyles.innerHTML = `
+        .floating-particle {
+            animation: fallDown 20s ease-in-out infinite !important;
+            filter: blur(0.6px) drop-shadow(0 0 5px rgba(255, 20, 147, 0.25)) !important;
+        }
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-8vh) translateX(0) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.35;
+            }
+            50% {
+                transform: translateY(50vh) translateX(30px) rotate(180deg) scale(0.9);
+                opacity: 0.45;
+            }
+            85% {
+                opacity: 0.35;
+            }
+            100% {
+                transform: translateY(112vh) translateX(-10px) rotate(360deg) scale(0.6);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(successStyles);
+    
+    // Spawn initial success particles
+    for (let i = 0; i < 8; i++) {
+        spawnSuccessParticle();
+        // Distribute them vertically so they don't all start at the top
+        const lastChild = particlesContainer.lastChild;
+        if (lastChild) {
+            lastChild.style.top = `${Math.random() * 80}%`;
+        }
+    }
+    
+    // Start calm, slower interval for falling petals
+    clearInterval(particleInterval);
+    particleInterval = setInterval(spawnSuccessParticle, 2200);
+}
+
+function spawnSuccessParticle() {
+    if (particlesContainer.children.length > 14) {
+        particlesContainer.removeChild(particlesContainer.children[0]);
+    }
+    
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.classList.add('floating-particle');
+    
+    const randomType = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+    svg.innerHTML = randomType;
+    
+    const size = Math.floor(Math.random() * 10) + 12; // 12px to 22px
+    const left = Math.random() * 100;
+    const duration = Math.random() * 8 + 16; // 16s to 24s
+    const delay = Math.random() * 2;
+    
+    svg.style.width = `${size}px`;
+    svg.style.height = `${size}px`;
+    svg.style.left = `${left}%`;
+    svg.style.top = `-25px`; // start from top
+    svg.style.animationDuration = `${duration}s`;
+    svg.style.animationDelay = `${delay}s`;
+    
+    // Elegant shades of rose pink, soft red, crimson, and blush
+    const colors = ['#ff3385', '#ff4d4d', '#ff1a1a', '#ff9999', '#e6005c'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    svg.style.fill = randomColor;
+    
+    particlesContainer.appendChild(svg);
+}
