@@ -528,48 +528,24 @@ body {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
+    background-image: url('assets/desktop_rose_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .background-roses.active {
-    opacity: 1;
-}
-
-.bg-rose-1 {
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 250px;
-    height: 250px;
-    color: var(--barbie-pink-medium);
-    opacity: 0.08;
-    transform: rotate(-15deg);
-}
-
-.bg-rose-2 {
-    position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 250px;
-    height: 250px;
-    color: var(--barbie-pink-medium);
-    opacity: 0.08;
-    transform: rotate(165deg);
+    opacity: 0.15; /* keep it subtle and elegant, matching the soft card */
 }
 
 @media (max-width: 480px) {
-    .bg-rose-1 {
-        width: 150px;
-        height: 150px;
-        top: -20px;
-        left: -20px;
+    .background-roses {
+        background-image: url('assets/mobile_rose_bg.png');
     }
-    .bg-rose-2 {
-        width: 150px;
-        height: 150px;
-        bottom: -20px;
-        right: -20px;
+    .background-roses.active {
+        opacity: 0.22;
     }
 }
