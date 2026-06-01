@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
             }
         }
 
-        const messageText = `🌹 *Gülom Date Teklifini Kabul Etti!* 🌹\n\n📅 *Tarih:* ${formattedDate}\n🕒 *Saat:* ${time}\n🗺️ *Plan:* ${activity}\n\nSözleştiğiniz gibi orada olacak! 😉`;
+        const messageText = `🌹 <b>Gülom Date Teklifini Kabul Etti!</b> 🌹\n\n📅 <b>Tarih:</b> ${formattedDate}\n🕒 <b>Saat:</b> ${time}\n🗺️ <b>Plan:</b> ${activity}\n\nSözleştiğiniz gibi orada olacak! 😉`;
 
         const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
         
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
             body: JSON.stringify({
                 chat_id: chatId,
                 text: messageText,
-                parse_mode: 'Markdown'
+                parse_mode: 'HTML'
             })
         });
 

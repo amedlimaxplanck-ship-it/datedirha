@@ -341,7 +341,8 @@ dateForm.addEventListener('submit', async (e) => {
             }, 400);
         } else {
             const errData = await response.json();
-            alert('Gönderim başarısız oldu. Hata: ' + (errData.error || 'Bilinmeyen Hata'));
+            const detailMsg = (errData.details && errData.details.description) ? `\nDetay: ${errData.details.description}` : '';
+            alert('Gönderim başarısız oldu. Hata: ' + (errData.error || 'Bilinmeyen Hata') + detailMsg);
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnContent;
         }
