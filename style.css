@@ -519,3 +519,57 @@ body {
         opacity: 0;
     }
 }
+
+/* Background static roses */
+.background-roses {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.background-roses.active {
+    opacity: 1;
+}
+
+.bg-rose-1 {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 250px;
+    height: 250px;
+    color: var(--barbie-pink-medium);
+    opacity: 0.08;
+    transform: rotate(-15deg);
+}
+
+.bg-rose-2 {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    color: var(--barbie-pink-medium);
+    opacity: 0.08;
+    transform: rotate(165deg);
+}
+
+@media (max-width: 480px) {
+    .bg-rose-1 {
+        width: 150px;
+        height: 150px;
+        top: -20px;
+        left: -20px;
+    }
+    .bg-rose-2 {
+        width: 150px;
+        height: 150px;
+        bottom: -20px;
+        right: -20px;
+    }
+}
